@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Author List</h1>
+    <ul>
+    {% for author in author_list %}
+        <li> <a href = "{{ author.get_absolute_url }}">
+            {{ author.first_name }}.{{ author.first_name }}({{ author.date_of_birth }} - {{ author.date_of_death }}) </a>
+        </li>
+    {% endfor %}
+    </ul>
+    {% if perms.catalog.can_mark_returned %}
+        <div>
+            <a href = "{% url 'author-create' %}"> Create Author </a>
+        </div>
+    {% endif %}
+{% endblock content %}
